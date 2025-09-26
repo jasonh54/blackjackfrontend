@@ -8,7 +8,6 @@ class SignUp extends React.Component {
         this.state = {
             username: '',
             password: '',
-            email: '',
             message: '',
             error: ''
         };
@@ -22,7 +21,7 @@ class SignUp extends React.Component {
         event.preventDefault();
         const { username, password, email } = this.state;
         try {
-            const response = await axios.post('/api/register', { username, password, email });
+            const response = await axios.post('https://blackjackserver-production.up.railway.app/api/register', { username, password});
             this.setState({ message: response.data.message, error: '' });
         } catch (error) {
             if (error.response) {
@@ -34,7 +33,7 @@ class SignUp extends React.Component {
     }
 
     render() {
-        const { username, password, email, message, error } = this.state;
+        const { username, password, message, error } = this.state;
         return (
             <div className="signup-container">
                 <h2>Sign Up</h2>
@@ -57,17 +56,6 @@ class SignUp extends React.Component {
                             id="password"
                             name="password"
                             value={password}
-                            onChange={this.handleChange}
-                            required
-                        />
-                    </div>
-                    <div>
-                        <label htmlFor="email">Email:</label>
-                        <input
-                            type="email"
-                            id="email"
-                            name="email"
-                            value={email}
                             onChange={this.handleChange}
                             required
                         />
