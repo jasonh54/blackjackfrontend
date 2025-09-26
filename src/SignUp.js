@@ -19,7 +19,7 @@ class SignUp extends React.Component {
     }
     handleSubmit = async (event) => {
         event.preventDefault();
-        const { username, password, email } = this.state;
+        const { username, password} = this.state;
         try {
             const response = await axios.post('https://blackjackserver-production.up.railway.app/api/register', { username, password});
             this.setState({ message: response.data.message, error: '' });
